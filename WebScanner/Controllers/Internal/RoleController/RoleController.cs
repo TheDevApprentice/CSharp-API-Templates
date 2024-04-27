@@ -47,7 +47,6 @@ internal class RoleController : ControllerBase
     /// <response code="400">If the item is null</response>
     /// <response code="500">If the item is null</response>
     [HttpPost("userRoles")]
-    [ValidateAntiForgeryToken]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

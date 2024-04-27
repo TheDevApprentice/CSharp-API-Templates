@@ -27,7 +27,6 @@ internal class RedirectController : ControllerBase
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response>
     [HttpGet("redirect-url")]
-    [ValidateAntiForgeryToken]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -58,7 +57,6 @@ internal class RedirectController : ControllerBase
     /// <response code="400">If the item is null</response>
     /// <response code="500">If the item is null</response>
     [HttpGet("redirect-ip")]
-    [ValidateAntiForgeryToken]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

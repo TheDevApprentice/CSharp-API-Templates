@@ -30,10 +30,22 @@ namespace WebScanner.StartupBuilder
 
             var jwtIssuer = Environment
                 .GetEnvironmentVariable("JWT_ISSUER");
+            if (jwtIssuer == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
             var jwtAudience = Environment
                 .GetEnvironmentVariable("JWT_AUDIENCE");
+            if (jwtAudience == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
             var jwtKey = Environment
                 .GetEnvironmentVariable("JWT_KEY");
+            if (jwtKey == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
 
             #endregion
 

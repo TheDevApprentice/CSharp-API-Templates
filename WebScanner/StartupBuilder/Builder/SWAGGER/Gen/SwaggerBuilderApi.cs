@@ -33,31 +33,83 @@ namespace WebScanner.StartupBuilder
 
             string WEB_SCANNER_APP_SWAGGERDOC_VERSION = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_VERSION");
+            if (WEB_SCANNER_APP_SWAGGERDOC_VERSION == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
             string WEB_SCANNER_APP_SWAGGERDOC_TITLE = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_TITLE");
+            if (WEB_SCANNER_APP_SWAGGERDOC_TITLE == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
             string WEB_SCANNER_APP_SWAGGERDOC_DESCRIPTION = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_DESCRIPTION");
+            if (WEB_SCANNER_APP_SWAGGERDOC_DESCRIPTION == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
             string WEB_SCANNER_APP_SWAGGERDOC_TERMOFSERVICE_URL = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_TERMOFSERVICE_URL");
+            if (WEB_SCANNER_APP_SWAGGERDOC_TERMOFSERVICE_URL == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
             string WEB_SCANNER_APP_SWAGGERDOC_CONTACT_NAME = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_CONTACT_NAME");
+            if (WEB_SCANNER_APP_SWAGGERDOC_CONTACT_NAME == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
             string WEB_SCANNER_APP_SWAGGERDOC_CONTACT_URL = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_CONTACT_URL");
+            if (WEB_SCANNER_APP_SWAGGERDOC_CONTACT_URL == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
             string WEB_SCANNER_APP_SWAGGERDOC_LICENCE_NAME = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_LICENCE_NAME");
+            if (WEB_SCANNER_APP_SWAGGERDOC_LICENCE_NAME == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
             string WEB_SCANNER_APP_SWAGGERDOC_LICENCE_URL = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_LICENCE_URL");
+            if (WEB_SCANNER_APP_SWAGGERDOC_LICENCE_URL == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
             string WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_NAME = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_NAME");
+            if (WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_NAME == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
             string WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_DESCRIPTION = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_DESCRIPTION");
+            if (WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_DESCRIPTION == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
             string WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_NAME = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_NAME");
+
+            if (WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_NAME == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
             string WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_SHEME = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_SHEME");
+            if (WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_SHEME == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
             string WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYREQUIREMENT_ID = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYREQUIREMENT_ID");
-
+            if (WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYREQUIREMENT_ID == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
             #endregion
 
             // Swagger/OpenAPI Configuration
@@ -91,8 +143,8 @@ namespace WebScanner.StartupBuilder
                      Name = WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_NAME,
                      In = ParameterLocation.Header,
                      Type = SecuritySchemeType.Http,
-                     Scheme = WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_SHEME,
-                     //BearerFormat=""
+                     Scheme = WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_SHEME
+                     //BearerFormat="
                  });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement

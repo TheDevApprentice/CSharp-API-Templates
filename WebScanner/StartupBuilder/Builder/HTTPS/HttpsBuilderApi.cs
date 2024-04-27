@@ -26,6 +26,10 @@ public class HttpsBuilderApi
 
         string WEB_SCANNER_APP_HTTPSPORT = Environment
             .GetEnvironmentVariable("WEB_SCANNER_APP_HTTPSPORT");
+        if (WEB_SCANNER_APP_HTTPSPORT == null) { throw new Exception("NullValue"); }
+        else
+        {
+        }
         int appHttpPort;
 
         if (!string.IsNullOrEmpty(WEB_SCANNER_APP_HTTPSPORT))

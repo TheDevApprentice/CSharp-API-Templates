@@ -27,7 +27,11 @@ namespace WebScanner.StartupBuilder
         public void BuildDbContext()
         {
             string value = Environment
-            .GetEnvironmentVariable("env");
+            .GetEnvironmentVariable("ENVIRONMENT");
+            if (value == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
 
             //Configuration de la base de donn�es en fonction de l'environnement
             if (value == "stage" || builder.Environment.IsStaging())
@@ -36,16 +40,40 @@ namespace WebScanner.StartupBuilder
 
                 string DB_SERVER_STAGE = Environment
                     .GetEnvironmentVariable("DB_SERVER_STAGE");
+                if (DB_SERVER_STAGE == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
                 string DB_PORT_STAGE = Environment
                     .GetEnvironmentVariable("DB_PORT_STAGE");
+                if (DB_PORT_STAGE == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
                 string DB_NAME_STAGE = Environment
                     .GetEnvironmentVariable("DB_NAME_STAGE");
+                if (DB_NAME_STAGE == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
                 string DB_USER_STAGE = Environment
                     .GetEnvironmentVariable("DB_USER_STAGE");
+                if (DB_USER_STAGE == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
                 string DB_PASSWORD_STAGE = Environment
                     .GetEnvironmentVariable("DB_PASSWORD_STAGE");
+                if (DB_PASSWORD_STAGE == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
                 string DB_TRUST_CERTIFICATE_SERVER_STAGE = Environment
                     .GetEnvironmentVariable("DB_TRUST_CERTIFICATE_SERVER_STAGE");
+                if (DB_TRUST_CERTIFICATE_SERVER_STAGE == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
 
                 #endregion
 
@@ -98,7 +126,10 @@ namespace WebScanner.StartupBuilder
 
                 string DB_NAME_INMEMORY = Environment
                     .GetEnvironmentVariable("DB_NAME_INMEMORY");
-
+                if (DB_NAME_INMEMORY == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
                 #endregion
 
                 builder.Services

@@ -11,6 +11,7 @@ WORKDIR /src
 COPY ["WebScanner.csproj", "."]
 RUN dotnet restore "./WebScanner.csproj"
 COPY . .
+RUN ls && \ sleep 10
 WORKDIR "/src/."
 RUN dotnet build "./WebScanner.csproj" -c $BUILD_CONFIGURATION -o /app/build
 

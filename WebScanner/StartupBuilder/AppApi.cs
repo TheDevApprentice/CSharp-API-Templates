@@ -33,20 +33,47 @@ namespace WebScanner.StartupBuilder
 
                 string WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_NAME = Environment
                     .GetEnvironmentVariable("WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_NAME");
+                if (WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_NAME == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
                 string WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_AREANAME = Environment
                     .GetEnvironmentVariable("WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_AREANAME");
+                if (WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_AREANAME == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
                 string WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_PATTERN = Environment
                     .GetEnvironmentVariable("WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_PATTERN");
+                if (WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_PATTERN == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
                 string WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_DEFAULTS_CONTROLLER = Environment
                     .GetEnvironmentVariable("WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_DEFAULTS_CONTROLLER");
+                if (WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_DEFAULTS_CONTROLLER == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
                 string WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_DEFAULTS_ACTION = Environment
                     .GetEnvironmentVariable("WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_DEFAULTS_ACTION");
-
+                if (WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_DEFAULTS_ACTION == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
                 string WEB_SCANNER_USE_SWAGGER_ROUTETEMPLATE = Environment
                     .GetEnvironmentVariable("WEB_SCANNER_USE_SWAGGER_ROUTETEMPLATE");
+                if (WEB_SCANNER_USE_SWAGGER_ROUTETEMPLATE == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
                 bool serializeAsV2 = false;
                 string WEB_SCANNER_USE_SWAGGER_SERIALIZEASV2 = Environment
                     .GetEnvironmentVariable("WEB_SCANNER_USE_SWAGGER_SERIALIZEASV2");
+                if (WEB_SCANNER_USE_SWAGGER_SERIALIZEASV2 == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
                 if (!string.IsNullOrEmpty(WEB_SCANNER_USE_SWAGGER_SERIALIZEASV2))
                 {
                     if (!bool.TryParse(WEB_SCANNER_USE_SWAGGER_SERIALIZEASV2, out serializeAsV2))
@@ -57,12 +84,27 @@ namespace WebScanner.StartupBuilder
 
                 string WEB_SCANNER_USE_SWAGGER_UI_ROUTEPREFIX = Environment
                     .GetEnvironmentVariable("WEB_SCANNER_USE_SWAGGER_UI_ROUTEPREFIX");
+                if (WEB_SCANNER_USE_SWAGGER_UI_ROUTEPREFIX == null) { throw new Exception("NullValue"); }
+                else {
+                }
                 string WEB_SCANNER_USE_SWAGGER_UI_DOCUMENTTITLE = Environment
                     .GetEnvironmentVariable("WEB_SCANNER_USE_SWAGGER_UI_DOCUMENTTITLE");
+                if (WEB_SCANNER_USE_SWAGGER_UI_DOCUMENTTITLE == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
                 string WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_URL = Environment
                     .GetEnvironmentVariable("WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_URL");
+                if (WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_URL == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
                 string WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_NAME = Environment
                     .GetEnvironmentVariable("WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_NAME");
+                if (WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_NAME == null) { throw new Exception("NullValue"); }
+                else
+                {
+                }
 
                 #endregion
 
@@ -111,6 +153,10 @@ namespace WebScanner.StartupBuilder
             #region Cors
             string WEB_SCANNER_APP_USECORS_POLICYNAME = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_USECORS_POLICYNAME");
+            if (WEB_SCANNER_APP_USECORS_POLICYNAME == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
             app.UseCors(WEB_SCANNER_APP_USECORS_POLICYNAME);
             #endregion
 

@@ -14,7 +14,11 @@ namespace WebScrapper.DOMAIN
             #region ENV
 
             string WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYREQUIREMENT_ID = Environment
-                .GetEnvironmentVariable("WEB_SCANNER_WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYREQUIREMENT_IDANTI_FORGERY_BUILDER_ADDANTIFORGERY_FORMFIELDNAME");
+                .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYREQUIREMENT_ID");
+            if (WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYREQUIREMENT_ID == null) { throw new Exception("NullValue"); }
+            else
+            {
+            }
 
             #endregion
 
