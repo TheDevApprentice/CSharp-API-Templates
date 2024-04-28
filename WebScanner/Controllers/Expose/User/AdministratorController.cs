@@ -31,7 +31,7 @@ public class AdministratorController : UserController
     /// <summary>
     /// Creates a TodoItem.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Test</returns>
     /// 
     /// <remarks>
     /// Sample request:
@@ -83,7 +83,7 @@ public class AdministratorController : UserController
     /// <summary>
     /// Creates a TodoItem.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Test</returns>
     /// 
     /// <remarks>
     /// Sample request:
@@ -141,7 +141,7 @@ public class AdministratorController : UserController
     /// <summary>
     /// Creates a TodoItem.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Test</returns>
     /// 
     /// <remarks>
     /// Sample request:
@@ -186,7 +186,7 @@ public class AdministratorController : UserController
     /// <summary>
     /// Creates a TodoItem.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Test</returns>
     /// 
     /// <remarks>
     /// Sample request:
@@ -226,7 +226,7 @@ public class AdministratorController : UserController
     /// <summary>
     /// Creates a TodoItem.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Test</returns>
     /// 
     /// <remarks>
     /// Sample request:
@@ -277,7 +277,7 @@ public class AdministratorController : UserController
     /// <summary>
     /// Creates a TodoItem.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Test</returns>
     /// 
     /// <remarks>
     /// Sample request:

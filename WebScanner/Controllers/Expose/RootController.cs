@@ -61,7 +61,7 @@ public class RootController : UserController
     /// Creates a TodoItem.
     /// </summary>
     /// <param name="userInformationsForloginDto"></param>
-    /// <returns></returns>
+    /// <returns>Test</returns>
     /// <remarks>
     /// Sample request:
     ///
@@ -179,7 +179,7 @@ public class RootController : UserController
     /// Creates a TodoItem.
     /// </summary>
     /// <param name="userRegirastingInformationsFromDTO"></param>
-    /// <returns></returns>
+    /// <returns>Test</returns>
     /// 
     /// <remarks>
     /// Sample request:
@@ -290,7 +290,7 @@ public class RootController : UserController
     /// Creates a TodoItem.
     /// </summary>
     /// <param name="token"></param>
-    /// <returns></returns>
+    /// <returns>Test</returns>
     /// 
     /// <remarks>
     /// Sample request:

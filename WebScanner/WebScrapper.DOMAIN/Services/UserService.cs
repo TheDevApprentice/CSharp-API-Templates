@@ -3,12 +3,20 @@ using WebScrapper.DOMAIN.DTO;
 
 namespace WebScrapper.DOMAIN;
 
+/// <summary>
+/// Service class for managing user-related operations.
+/// </summary>
 public class UserService : IUserService
 {
     private IUserRepo _repoUser;
     private IConfiguration _configuration;
     private EncryptionHelper _encryptionHelper;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UserService"/> class.
+    /// </summary>
+    /// <param name="userRepo">The repository for users.</param>
+    /// <param name="configuration">The configuration.</param>
     public UserService(
         IUserRepo userRepo,
         IConfiguration configuration
@@ -22,6 +30,12 @@ public class UserService : IUserService
         _repoUser = userRepo;
     }
 
+    /// <summary>
+    /// Verifies the password of a user.
+    /// </summary>
+    /// <param name="userToLogin">The user to log in.</param>
+    /// <param name="loginDto">The login DTO containing the password.</param>
+    /// <returns>True if the password is verified; otherwise, false.</returns>
     public bool VerifyPassword(
         User userToLogin,
         LoginDTO loginDto
@@ -41,6 +55,12 @@ public class UserService : IUserService
         return false;
     }
 
+    /// <summary>
+    /// Creates a new registered user.
+    /// </summary>
+    /// <param name="registrationDTO">The registration DTO containing user information.</param>
+    /// <param name="clientInformationScanner">The client information scanner.</param>
+    /// <returns>The newly created user.</returns>
     public User CreateUserRegistered(
         RegisterationDTO registrationDTO,
         UserRequestHeaderInformation clientInformationScanner
@@ -62,6 +82,13 @@ public class UserService : IUserService
         return newUser;
     }
 
+    /// <summary>
+    /// Login New Created User
+    /// </summary>
+    /// <param name="registrationDTO"></param>
+    /// <param name="clientInformationScanner"></param>
+    /// <param name="usertoLogin"></param>
+    /// <returns></returns>
     public User CreateUserRegisteredLogin(
         LoginDTO registrationDTO,
         UserRequestHeaderInformation clientInformationScanner,

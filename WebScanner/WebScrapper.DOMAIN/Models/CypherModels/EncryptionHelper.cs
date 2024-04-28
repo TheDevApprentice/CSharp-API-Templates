@@ -22,26 +22,32 @@ public class EncryptionHelper
         _fixedSalt = new byte[SaltSize];
     }
 
-    //private const int SaltSize = 325;
-    //private const int KeySize = 256;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="cipherText"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public string Verify(string cipherText)
+    {
+        throw new NotImplementedException();
+    }
 
-    //private readonly byte[] _fixedSalt = new byte[SaltSize];
-
-    //private readonly string _password;
-
-    //public EncryptionHelper(IConfiguration configuration)
-    //{
-    //    _password = configuration["Jwt:Key"];
-    //}
-
+    /// <summary>
+    /// Hashes a password using SHA256 hashing algorithm and a fixed salt.
+    /// </summary>
+    /// <param name="password">The password to hash.</param>
+    /// <returns>The hashed password.</returns>
     public string HashPassword(string password)
     {
         byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
         byte[] saltedPasswordBytes = new byte[passwordBytes.Length + _fixedSalt.Length];
 
+        // Concatenate password bytes and fixed salt bytes
         Buffer.BlockCopy(passwordBytes, 0, saltedPasswordBytes, 0, passwordBytes.Length);
         Buffer.BlockCopy(_fixedSalt, 0, saltedPasswordBytes, passwordBytes.Length, _fixedSalt.Length);
 
+        // Compute hash using SHA256 algorithm
         using (var sha256 = SHA256.Create())
         {
             byte[] hashedBytes = sha256.ComputeHash(saltedPasswordBytes);
@@ -49,14 +55,17 @@ public class EncryptionHelper
         }
     }
 
-    public string Verify(string cipherText)
-    {
-        throw new NotImplementedException();
-    }
-
+    /// <summary>
+    /// Verifies a password against a hashed password.
+    /// </summary>
+    /// <param name="password">The password to verify.</param>
+    /// <param name="hashedPassword">The hashed password to compare against.</param>
+    /// <returns>True if the password is verified, otherwise false.</returns>
     public bool VerifyPassword(string password, string hashedPassword)
     {
-        string hashedInputPassword = HashPassword(password); // Utiliser le même sel
+        // Hash the input password using the same salt
+        string hashedInputPassword = HashPassword(password);
+        // Compare the hashed passwords
         return string.Equals(hashedInputPassword, hashedPassword);
     }
 }

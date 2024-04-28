@@ -3,8 +3,6 @@ namespace WebScrapper.DOMAIN
     /// <summary>
     /// Creates a TodoItem.
     /// </summary>
-    /// <returns></returns>
-    /// 
     /// <remarks>
     /// Sample request:
     ///
@@ -21,7 +19,7 @@ namespace WebScrapper.DOMAIN
         /// <summary>
         /// Creates a TodoItem.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Return a TodoItem.</returns>
         /// 
         /// <remarks>
         /// Sample request:
@@ -41,7 +39,7 @@ namespace WebScrapper.DOMAIN
         /// <summary>
         /// Creates a TodoItem.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Return a TodoItem.</returns>
         /// 
         /// <remarks>
         /// Sample request:
@@ -64,7 +62,7 @@ namespace WebScrapper.DOMAIN
         /// <summary>
         /// Creates a TodoItem.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Return a TodoItem.</returns>
         /// 
         /// <remarks>
         /// Sample request:

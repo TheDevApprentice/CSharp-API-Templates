@@ -260,7 +260,7 @@ namespace WebScanner.StartupBuilder
                 //            { "hostpath", new OpenApiServerVariable { Default = "localhost:8787" } }
                 //        }
                 //});
-
+            
                 c.UseOneOfForPolymorphism();
                 c.UseAllOfForInheritance();
                 c.SelectSubTypesUsing(t =>

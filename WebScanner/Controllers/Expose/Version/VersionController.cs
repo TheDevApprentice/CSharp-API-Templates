@@ -24,7 +24,7 @@ public class VersionController : ControllerBase
     /// <summary>
     /// Creates a TodoItem.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Test</returns>
     /// 
     /// <remarks>
     /// Sample request:
@@ -37,8 +37,8 @@ public class VersionController : ControllerBase
     ///     }
     ///
     /// </remarks>
+    /// 
     [HttpGet("getversion")]
-    [ProducesDefaultResponseType]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]

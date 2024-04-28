@@ -30,44 +30,34 @@ namespace WebScrapper.DOMAIN
 
             if (authAttributes.Any())
             {
-                operation.Responses
-                .Add(
-                    "200",
-                    new OpenApiResponse
-                    {
+                //operation.Responses
+                //    .Add(
+                //        "400",
+                //        new OpenApiResponse
+                //        {
 
-                        Description = "Authorized"
+                //            Description = "test"
 
-                    });
+                //        });
+                //operation.Responses
+                //    .Add(
+                //        "401",
+                //        new OpenApiResponse
+                //        {
 
-                operation.Responses
-                    .Add(
-                        "400",
-                        new OpenApiResponse
-                        {
+                //            Description = "Unauthorized"
 
-                            Description = "test"
+                //        });
 
-                        });
-                operation.Responses
-                    .Add(
-                        "401",
-                        new OpenApiResponse
-                        {
+                //operation.Responses
+                //    .Add(
+                //        "403",
+                //        new OpenApiResponse
+                //        {
 
-                            Description = "Unauthorized"
+                //            Description = "Forbidden"
 
-                        });
-
-                operation.Responses
-                    .Add(
-                        "403",
-                        new OpenApiResponse
-                        {
-
-                            Description = "Forbidden"
-
-                        });
+                //        });
 
                 operation.Security = new List<OpenApiSecurityRequirement>
                 {
@@ -89,5 +79,4 @@ namespace WebScrapper.DOMAIN
             }
         }
     }
-
 }

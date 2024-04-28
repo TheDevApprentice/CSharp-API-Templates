@@ -65,7 +65,6 @@ namespace WebScanner.StartupBuilder
                     .GetEnvironmentVariable("WEB_SCANNER_USE_SWAGGER_UI_ROUTEPREFIX");
                 ValidityCheck.VerifyNullValue(WEB_SCANNER_USE_SWAGGER_UI_ROUTEPREFIX);
                 string WEB_SCANNER_USE_SWAGGER_UI_DOCUMENTTITLE = Environment
-
                     .GetEnvironmentVariable("WEB_SCANNER_USE_SWAGGER_UI_DOCUMENTTITLE");
                 ValidityCheck.VerifyNullValue(WEB_SCANNER_USE_SWAGGER_UI_DOCUMENTTITLE);
                 string WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_URL = Environment
@@ -162,6 +161,8 @@ namespace WebScanner.StartupBuilder
             app.UseAuthentication();
             app.UseAuthorization();
             #endregion
+
+            app.UseCookiePolicy();
 
             #region Anti forgery
             // https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-8.0

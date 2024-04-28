@@ -1,29 +1,44 @@
-namespace WebScrapper.DOMAIN;
-
-public class Administrator : User
+namespace WebScrapper.DOMAIN
 {
-    public bool Active { get; set; }
-
-    public Administrator(User user)
+    /// <summary>
+    /// Represents an administrator user.
+    /// </summary>
+    public class Administrator : User
     {
-        FirstName = user.FirstName;
-        LastName = user.LastName;
-        UserName = user.UserName;
-        Email = user.Email;
-        Password = user.Password;
-        UserType = user.UserType;
-        Token = user.Token;
-        UserPasswordHashed = user.UserPasswordHashed;
-        //Team = user.Team;
-        UserRequestHeaderInformation = user.UserRequestHeaderInformation;
-        TeamId = user.TeamId;
+        /// <summary>
+        /// Indicates whether the administrator is active.
+        /// </summary>
+        public bool Active { get; set; }
 
-        Active = true;
-        UserType = nameof(Guest);
-    }
+        /// <summary>
+        /// Initializes a new instance of the Administrator class with the provided user information.
+        /// </summary>
+        /// <param name="user">The base user information.</param>
+        public Administrator(User user)
+        {
+            // Copy base user information
+            FirstName = user.FirstName;
+            LastName = user.LastName;
+            UserName = user.UserName;
+            Email = user.Email;
+            Password = user.Password;
+            UserType = user.UserType;
+            Token = user.Token;
+            UserPasswordHashed = user.UserPasswordHashed;
+            UserRequestHeaderInformation = user.UserRequestHeaderInformation;
+            TeamId = user.TeamId;
 
-    public Administrator()
-    {
-        UserType = nameof(Administrator);
+            // Set specific administrator properties
+            Active = true;
+            UserType = nameof(Guest);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the Administrator class.
+        /// </summary>
+        public Administrator()
+        {
+            UserType = nameof(Administrator);
+        }
     }
 }

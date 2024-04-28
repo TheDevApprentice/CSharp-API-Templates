@@ -1,4 +1,6 @@
-﻿namespace WebScanner.StartupBuilder
+﻿using Microsoft.AspNetCore.CookiePolicy;
+
+namespace WebScanner.StartupBuilder
 {
     /// <summary>
     /// 
@@ -45,6 +47,16 @@
             antiForgeryBuilderApi.BuildAntiForgery();
 
             builder = antiForgeryBuilderApi.Builder;
+
+            builder.Services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential 
+                // cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.Secure = CookieSecurePolicy.Always;
+                options.HttpOnly = HttpOnlyPolicy.Always; 
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
         }
     }
 }
