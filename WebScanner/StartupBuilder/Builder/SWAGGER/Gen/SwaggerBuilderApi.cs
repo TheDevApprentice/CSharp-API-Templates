@@ -1,6 +1,9 @@
-﻿using Microsoft.OpenApi.Interfaces;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.OpenApi.Interfaces;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using System.Security.AccessControl;
+using System.Web.Services.Description;
 using WebScrapper.DOMAIN;
 
 namespace WebScanner.StartupBuilder
@@ -76,11 +79,12 @@ namespace WebScanner.StartupBuilder
 
             // Swagger/OpenAPI Configuration
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddHealthChecks();
 
             builder.Services.AddSwaggerGen(c =>
             {
                 c.DescribeAllParametersInCamelCase();
-
+                
                 c.AddSecurityDefinition("basicAuth", new OpenApiSecurityScheme
                 {
                     Type = SecuritySchemeType.Http,
@@ -150,17 +154,16 @@ namespace WebScanner.StartupBuilder
                     }
                 });
 
-                c.AddSecurityDefinition(
-                 WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_NAME,
-                 new OpenApiSecurityScheme
-                 {
-                     Description = WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_DESCRIPTION + ". Example: \"{token}\"",
-                     Name = WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_NAME,
-                     In = ParameterLocation.Header,
-                     Type = SecuritySchemeType.Http,
-                     Scheme = WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_SHEME
-                     //BearerFormat="
-                 });
+                c.AddSecurityDefinition(WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_NAME,
+                                        new OpenApiSecurityScheme
+                                        {
+                                             Description = WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_DESCRIPTION + ". Example: \"{token}\"",
+                                             Name = WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_NAME,
+                                             In = ParameterLocation.Header,
+                                             Type = SecuritySchemeType.Http,
+                                             Scheme = WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_SHEME
+                                             //BearerFormat="
+                                        });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                                 {
@@ -190,29 +193,31 @@ namespace WebScanner.StartupBuilder
 
                 c.UseOneOfForPolymorphism();
                 c.UseAllOfForInheritance();
-                c.UseInlineDefinitionsForEnums();
-                c.UseOneOfForPolymorphism();
-                c.UseAllOfToExtendReferenceSchemas();
-                c.SupportNonNullableReferenceTypes();
                 c.SelectSubTypesUsing(t =>
                 {
                     if (t.IsInterface)
-                    {
                         return t.GetInterfaces();
-                    }
-                    return Enumerable.Empty<Type>();
+
+                    else if (!t.IsInterface)
+                        return Enumerable.Empty<Type>();
+
+                    else
+                        return typeof(Program).Assembly.GetTypes().Where(type => type.IsSubclassOf(t));
                 });
+
+                c.UseInlineDefinitionsForEnums();
+                c.UseAllOfToExtendReferenceSchemas();
+                c.SupportNonNullableReferenceTypes();
 
                 // Enable XML comments
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename), true);
-                c.DescribeAllParametersInCamelCase();
 
                 c.SwaggerDoc(WEB_SCANNER_APP_SWAGGERDOC_VERSION,
                              new OpenApiInfo
                              {
                                  Title = WEB_SCANNER_APP_SWAGGERDOC_TITLE,
-                                 Version = WEB_SCANNER_APP_SWAGGERDOC_VERSION,
+                                 Version = "v1",
                                  Description = WEB_SCANNER_APP_SWAGGERDOC_DESCRIPTION,
                                  TermsOfService = new Uri(WEB_SCANNER_APP_SWAGGERDOC_TERMOFSERVICE_URL),
                                  Contact = new OpenApiContact
@@ -230,7 +235,7 @@ namespace WebScanner.StartupBuilder
                 c.SwaggerDoc("v2",
                             new OpenApiInfo
                             {
-                               Title = "My API",
+                               Title = WEB_SCANNER_APP_SWAGGERDOC_TITLE,
                                Version = "v2",
                                Description = WEB_SCANNER_APP_SWAGGERDOC_DESCRIPTION,
                                TermsOfService = new Uri(WEB_SCANNER_APP_SWAGGERDOC_TERMOFSERVICE_URL),
@@ -245,10 +250,11 @@ namespace WebScanner.StartupBuilder
                                     Url = new Uri(WEB_SCANNER_APP_SWAGGERDOC_LICENCE_URL)
                                 },
                             });
+
                 c.SwaggerDoc("v3",
                             new OpenApiInfo
                             {
-                                Title = "My API",
+                                Title = WEB_SCANNER_APP_SWAGGERDOC_TITLE,
                                 Version = "v3",
                                 Description = WEB_SCANNER_APP_SWAGGERDOC_DESCRIPTION,
                                 TermsOfService = new Uri(WEB_SCANNER_APP_SWAGGERDOC_TERMOFSERVICE_URL),

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace WebScanner.StartupBuilder
 {
@@ -93,7 +94,7 @@ namespace WebScanner.StartupBuilder
 
                 app.UseOpenApi();
                 app.UseWebSockets();
-                //app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();
                 app.MapAreaControllerRoute(
                     name: WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_NAME,
                     areaName: WEB_SCANNER_MAP_AREA_CONTROLLER_ROUTE_AREANAME,
@@ -120,57 +121,38 @@ namespace WebScanner.StartupBuilder
                         WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_URL_V3,
                         WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_NAME_V3);
                 });
-
-                //app.UseSwaggerUI(c =>
-                //{
-                //    c.RoutePrefix = WEB_SCANNER_USE_SWAGGER_UI_ROUTEPREFIX;
-                //    c.DocumentTitle = WEB_SCANNER_USE_SWAGGER_UI_DOCUMENTTITLE;
-                //    c.SwaggerEndpoint(
-                //        WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_URL_V2,
-                //        WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_NAME_V2);
-                //});
-
-                //app.UseSwaggerUI(c =>
-                //{
-                //    c.RoutePrefix = WEB_SCANNER_USE_SWAGGER_UI_ROUTEPREFIX;
-                //    c.DocumentTitle = WEB_SCANNER_USE_SWAGGER_UI_DOCUMENTTITLE;
-                //    c.SwaggerEndpoint(
-                //        WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_URL_V3,
-                //        WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_NAME_V3);
-                //});
-                //WelcomePage
-                //app.UseWelcomePage();
             }
-            #endregion
 
-            #region Production
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
             #endregion
 
             #region Routing
+
             app.UseHttpsRedirection();
             app.UseHttpLogging();
             app.UseRouting();
+
             #endregion
 
             #region Cors
+
             string WEB_SCANNER_APP_USECORS_POLICYNAME = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_USECORS_POLICYNAME");
             ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_USECORS_POLICYNAME);
             app.UseCors(WEB_SCANNER_APP_USECORS_POLICYNAME);
+
             #endregion
 
             #region Auth
+
             app.UseAuthentication();
             app.UseAuthorization();
+
             #endregion
 
             app.UseCookiePolicy();
 
             #region Anti forgery
+
             // https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-8.0
 
             var antiforgery = app.Services.GetRequiredService<IAntiforgery>();
@@ -189,25 +171,35 @@ namespace WebScanner.StartupBuilder
                 return next(context);
             });
 
-            //app.UseHealthChecks("/healthz");
+            // Use this route https://localhost:YourAPIPort/health
+            // It will tell you about the health of your api
+            app.UseHealthChecks("/health");
 
+            // This endpoint generates and returns an anti-forgery token.
             app.MapGet("antiforgery/token", (IAntiforgery forgeryService, HttpContext context) =>
             {
+                // Generate and store anti-forgery tokens.
                 var tokens = forgeryService.GetAndStoreTokens(context);
+
+                // Set the anti-forgery token in a cookie named "XSRF-TOKEN".
                 context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken!,
                         new CookieOptions { HttpOnly = false });
 
                 return Results.Ok();
             }).RequireAuthorization();
+
             #endregion
 
             #region Controllers
+
             app.MapControllers();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
             #endregion
+
         }
     }
 }

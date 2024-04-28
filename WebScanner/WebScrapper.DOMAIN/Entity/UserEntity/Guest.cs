@@ -1,3 +1,6 @@
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
 namespace WebScrapper.DOMAIN
 {
     /// <summary>
@@ -43,7 +46,14 @@ namespace WebScrapper.DOMAIN
         }
 
         /// <summary>
-        /// Represents the experience level of the guest.
+        /// Represents the experience level of the registered user.
+        /// </summary>
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [EnumDataType(typeof(JsonStringEnumConverter))]
+        public Experience EmployeeExperience { get; set; }
+
+        /// <summary>
+        /// Represents the possible experience levels of the registered user.
         /// </summary>
         public enum Experience
         {

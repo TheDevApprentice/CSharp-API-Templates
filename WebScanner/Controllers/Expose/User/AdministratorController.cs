@@ -5,7 +5,7 @@ using WebScrapper.DOMAIN;
 namespace WebScanner.Controllers;
 
 /// <summary>
-/// Controller authentificated by OAuth Token and Basic Auth
+/// Controller authentificated by OAuth Token.
 /// </summary>
 [ApiController]
 [AutoValidateAntiforgeryToken]
