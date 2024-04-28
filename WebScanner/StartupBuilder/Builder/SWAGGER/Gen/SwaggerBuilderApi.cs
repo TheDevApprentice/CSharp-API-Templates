@@ -33,87 +33,148 @@ namespace WebScanner.StartupBuilder
 
             string WEB_SCANNER_APP_SWAGGERDOC_VERSION = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_VERSION");
-            if (WEB_SCANNER_APP_SWAGGERDOC_VERSION == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_SWAGGERDOC_VERSION);
             string WEB_SCANNER_APP_SWAGGERDOC_TITLE = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_TITLE");
-            if (WEB_SCANNER_APP_SWAGGERDOC_TITLE == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_SWAGGERDOC_TITLE);
             string WEB_SCANNER_APP_SWAGGERDOC_DESCRIPTION = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_DESCRIPTION");
-            if (WEB_SCANNER_APP_SWAGGERDOC_DESCRIPTION == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_SWAGGERDOC_DESCRIPTION);
             string WEB_SCANNER_APP_SWAGGERDOC_TERMOFSERVICE_URL = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_TERMOFSERVICE_URL");
-            if (WEB_SCANNER_APP_SWAGGERDOC_TERMOFSERVICE_URL == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_SWAGGERDOC_TERMOFSERVICE_URL);
             string WEB_SCANNER_APP_SWAGGERDOC_CONTACT_NAME = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_CONTACT_NAME");
-            if (WEB_SCANNER_APP_SWAGGERDOC_CONTACT_NAME == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_SWAGGERDOC_CONTACT_NAME);
             string WEB_SCANNER_APP_SWAGGERDOC_CONTACT_URL = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_CONTACT_URL");
-            if (WEB_SCANNER_APP_SWAGGERDOC_CONTACT_URL == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_SWAGGERDOC_CONTACT_URL);
             string WEB_SCANNER_APP_SWAGGERDOC_LICENCE_NAME = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_LICENCE_NAME");
-            if (WEB_SCANNER_APP_SWAGGERDOC_LICENCE_NAME == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_SWAGGERDOC_LICENCE_NAME);
             string WEB_SCANNER_APP_SWAGGERDOC_LICENCE_URL = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_LICENCE_URL");
-            if (WEB_SCANNER_APP_SWAGGERDOC_LICENCE_URL == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_SWAGGERDOC_LICENCE_URL);
             string WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_NAME = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_NAME");
-            if (WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_NAME == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_NAME);
             string WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_DESCRIPTION = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_DESCRIPTION");
-            if (WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_DESCRIPTION == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_DESCRIPTION);
             string WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_NAME = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_NAME");
-
-            if (WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_NAME == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_NAME);
             string WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_SHEME = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_SHEME");
-            if (WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_SHEME == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_SHEME_SHEME);
             string WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYREQUIREMENT_ID = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYREQUIREMENT_ID");
-            if (WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYREQUIREMENT_ID == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYREQUIREMENT_ID);
             #endregion
 
             // Swagger/OpenAPI Configuration
             builder.Services.AddEndpointsApiExplorer();
+
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v3", new OpenApiInfo { Title = "My API", Version = "v3" });
+
+                c.AddSecurityDefinition("basicAuth", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "basic",
+                    Description = "Basic authentication header"
+                });
+
+                c.AddSecurityDefinition("apiKey", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.ApiKey,
+                    In = ParameterLocation.Header,
+                    Name = "Authorization",
+                    Description = "API Key authentication header"
+                });
+
+                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.OAuth2,
+                    Flows = new OpenApiOAuthFlows
+                    {
+                        Implicit = new OpenApiOAuthFlow
+                        {
+                            AuthorizationUrl = new Uri("https://example.com/oauth2/authorize"),
+                            Scopes = new Dictionary<string, string>
+                        {
+                            { "read", "Lire les données" },
+                            { "write", "Ecrire les données" }
+                        }
+                        }
+                    }
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "basicAuth"
+                            }
+                        },
+                        new string[] {}
+                    },
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "apiKey"
+                            }
+                        },
+                        new string[] {}
+                    },
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "oauth2"
+                            }
+                        },
+                        new[] { "read", "write" }
+                    }
+                });
+            });
+
+            //builder.Services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v2", new OpenApiInfo { Title = "My API", Version = "v2" });
+
+            //    c.AddSecurityDefinition("basicAuth", new OpenApiSecurityScheme
+            //    {
+            //        Type = SecuritySchemeType.Http,
+            //        Scheme = "basic",
+            //        Description = "Basic authentication header"
+            //    });
+
+            //    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            //    {
+            //        {
+            //            new OpenApiSecurityScheme
+            //            {
+            //                Reference = new OpenApiReference
+            //                {
+            //                    Type = ReferenceType.SecurityScheme,
+            //                    Id = "basicAuth"
+            //                }
+            //            },
+            //            new string[] {}
+            //        }
+            //    });
+            //});
 
             builder.Services.AddSwaggerGen(c =>
             {

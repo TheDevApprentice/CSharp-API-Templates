@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using WebScrapper.DOMAIN;
 
 namespace WebScanner.Controllers;
+
 /// <summary>
-/// 
+/// Controller authentificated by OAuth Token and Basic Auth
 /// </summary>
 [ApiController]
 [AutoValidateAntiforgeryToken]
@@ -126,6 +127,176 @@ public class AdministratorController : UserController
                 "Not able to login... : ",
                 e.Message);
 
+            return StatusCode(500, returnedErrorMessage);
+        }
+    }
+
+    /// <summary>
+    /// Creates a TodoItem.
+    /// </summary>
+    /// <returns></returns>
+    /// 
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /Todo
+    ///     {
+    ///        "id": 1,
+    ///        "name": "Item #1",
+    ///        "isComplete": true
+    ///     }
+    ///
+    /// </remarks>
+
+    [HttpGet("getUser/{name}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public IActionResult GetUser(string name)
+    {
+        try
+        {
+            User user = _administratorService.GetUserByUsernName(name);
+            if (user == null)
+            {
+                return NotFound($"User with name {user} not found.");
+            }
+            return Ok(user);
+        }
+        catch (Exception e)
+        {
+            ReturnedErrorMessageInfo returnedErrorMessage = new(
+                "Error retrieving user.",
+                e.Message);
+            return StatusCode(500, returnedErrorMessage);
+        }
+    }
+
+
+    /// <summary>
+    /// Creates a TodoItem.
+    /// </summary>
+    /// <returns></returns>
+    /// 
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /Todo
+    ///     {
+    ///        "id": 1,
+    ///        "name": "Item #1",
+    ///        "isComplete": true
+    ///     }
+    ///
+    /// </remarks>
+    [HttpPost("createUser")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public IActionResult CreateUser([FromBody] User newUser)
+    {
+        try
+        {
+            // You might want to perform validation on newUser before creating it
+            _administratorService.AddUser(newUser);
+            return StatusCode(201, "User created successfully.");
+        }
+        catch (Exception e)
+        {
+            ReturnedErrorMessageInfo returnedErrorMessage = new(
+                "Error creating user.",
+                e.Message);
+            return StatusCode(500, returnedErrorMessage);
+        }
+    }
+
+    /// <summary>
+    /// Creates a TodoItem.
+    /// </summary>
+    /// <returns></returns>
+    /// 
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /Todo
+    ///     {
+    ///        "id": 1,
+    ///        "name": "Item #1",
+    ///        "isComplete": true
+    ///     }
+    ///
+    /// </remarks>
+    [HttpPut("updateUser/{userId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public IActionResult UpdateUser(int userId, [FromBody] User updatedUser)
+    {
+        try
+        {
+            if (userId != updatedUser.UserId)
+            {
+                return BadRequest("User ID mismatch.");
+            }
+
+            User userExists = _administratorService.ModifyUser(updatedUser);
+            if (userExists != null)
+            {
+                return NotFound($"User with ID {userId} not found.");
+            }
+
+            // You might want to perform validation on updatedUser before updating it
+            //_administratorService./*UpdateUser*/(updatedUser);
+            return Ok(userExists);
+        }
+        catch (Exception e)
+        {
+            ReturnedErrorMessageInfo returnedErrorMessage = new(
+                "Error updating user.",
+                e.Message);
+            return StatusCode(500, returnedErrorMessage);
+        }
+    }
+
+    /// <summary>
+    /// Creates a TodoItem.
+    /// </summary>
+    /// <returns></returns>
+    /// 
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /Todo
+    ///     {
+    ///        "id": 1,
+    ///        "name": "Item #1",
+    ///        "isComplete": true
+    ///     }
+    ///
+    /// </remarks>
+    [HttpDelete("deleteUser/{userId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public IActionResult DeleteUser(int userId)
+    {
+        try
+        {
+            //bool userExists = _administratorService.UserExists(userId);
+            //if (!userExists)
+            //{
+            //    return NotFound($"User with ID {userId} not found.");
+            //}
+
+            //_administratorService.DeleteUser(userId);
+            return NoContent();
+        }
+        catch (Exception e)
+        {
+            ReturnedErrorMessageInfo returnedErrorMessage = new(
+                "Error deleting user.",
+                e.Message);
             return StatusCode(500, returnedErrorMessage);
         }
     }

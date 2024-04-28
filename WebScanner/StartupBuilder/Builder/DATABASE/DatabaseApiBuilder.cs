@@ -28,11 +28,7 @@ namespace WebScanner.StartupBuilder
         {
             string value = Environment
             .GetEnvironmentVariable("ENVIRONMENT");
-            if (value == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
-
+            ValidityCheck.VerifyNullValue(value); 
             //Configuration de la base de donn�es en fonction de l'environnement
             if (value == "stage" || builder.Environment.IsStaging())
             {
@@ -40,40 +36,22 @@ namespace WebScanner.StartupBuilder
 
                 string DB_SERVER_STAGE = Environment
                     .GetEnvironmentVariable("DB_SERVER_STAGE");
-                if (DB_SERVER_STAGE == null) { throw new Exception("NullValue"); }
-                else
-                {
-                }
+                ValidityCheck.VerifyNullValue(DB_SERVER_STAGE);
                 string DB_PORT_STAGE = Environment
                     .GetEnvironmentVariable("DB_PORT_STAGE");
-                if (DB_PORT_STAGE == null) { throw new Exception("NullValue"); }
-                else
-                {
-                }
+                ValidityCheck.VerifyNullValue(DB_PORT_STAGE);
                 string DB_NAME_STAGE = Environment
                     .GetEnvironmentVariable("DB_NAME_STAGE");
-                if (DB_NAME_STAGE == null) { throw new Exception("NullValue"); }
-                else
-                {
-                }
+                ValidityCheck.VerifyNullValue(DB_NAME_STAGE);
                 string DB_USER_STAGE = Environment
                     .GetEnvironmentVariable("DB_USER_STAGE");
-                if (DB_USER_STAGE == null) { throw new Exception("NullValue"); }
-                else
-                {
-                }
+                ValidityCheck.VerifyNullValue(DB_USER_STAGE);
                 string DB_PASSWORD_STAGE = Environment
                     .GetEnvironmentVariable("DB_PASSWORD_STAGE");
-                if (DB_PASSWORD_STAGE == null) { throw new Exception("NullValue"); }
-                else
-                {
-                }
+                ValidityCheck.VerifyNullValue(DB_PASSWORD_STAGE);
                 string DB_TRUST_CERTIFICATE_SERVER_STAGE = Environment
                     .GetEnvironmentVariable("DB_TRUST_CERTIFICATE_SERVER_STAGE");
-                if (DB_TRUST_CERTIFICATE_SERVER_STAGE == null) { throw new Exception("NullValue"); }
-                else
-                {
-                }
+                ValidityCheck.VerifyNullValue(DB_TRUST_CERTIFICATE_SERVER_STAGE);
 
                 #endregion
 
@@ -95,16 +73,22 @@ namespace WebScanner.StartupBuilder
 
                 string DB_SERVER_PROD = Environment
                     .GetEnvironmentVariable("DB_SERVER_PROD");
+                ValidityCheck.VerifyNullValue(DB_SERVER_PROD);
                 string DB_PORT_PORT = Environment
                     .GetEnvironmentVariable("DB_PORT_PORT");
+                ValidityCheck.VerifyNullValue(DB_PORT_PORT);
                 string DB_NAME_PROD = Environment
                     .GetEnvironmentVariable("DB_NAME_PROD");
+                ValidityCheck.VerifyNullValue(DB_NAME_PROD);
                 string DB_USER_PROD = Environment
                     .GetEnvironmentVariable("DB_USER_PROD");
+                ValidityCheck.VerifyNullValue(DB_USER_PROD);
                 string DB_PASSWORD_PROD = Environment
                     .GetEnvironmentVariable("DB_PASSWORD_PROD");
+                ValidityCheck.VerifyNullValue(DB_PASSWORD_PROD);
                 string DB_TRUST_CERTIFICATE_SERVER_PROD = Environment
                     .GetEnvironmentVariable("DB_TRUST_CERTIFICATE_SERVER_PROD");
+                ValidityCheck.VerifyNullValue(DB_TRUST_CERTIFICATE_SERVER_PROD);
 
                 #endregion
 
@@ -126,10 +110,7 @@ namespace WebScanner.StartupBuilder
 
                 string DB_NAME_INMEMORY = Environment
                     .GetEnvironmentVariable("DB_NAME_INMEMORY");
-                if (DB_NAME_INMEMORY == null) { throw new Exception("NullValue"); }
-                else
-                {
-                }
+                ValidityCheck.VerifyNullValue(DB_NAME_INMEMORY);
                 #endregion
 
                 builder.Services

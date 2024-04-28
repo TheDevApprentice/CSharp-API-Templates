@@ -27,28 +27,16 @@
 
             string WEB_SCANNER_APP_USECORS_POLICYNAME = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_USECORS_POLICYNAME");
-            if (WEB_SCANNER_APP_USECORS_POLICYNAME == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_USECORS_POLICYNAME);
             string WEB_SCANNER_APP_ADDCORS_POLICYNAME2 = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_ADDCORS_POLICYNAME2");
-            if (WEB_SCANNER_APP_ADDCORS_POLICYNAME2 == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_ADDCORS_POLICYNAME2);
             string WEB_SCANNER_APP_ADDCORS_WITHMETHOD_PARAMS1 = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_ADDCORS_WITHMETHOD_PARAMS1");
-            if (WEB_SCANNER_APP_ADDCORS_WITHMETHOD_PARAMS1 == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_ADDCORS_WITHMETHOD_PARAMS1);
             string WEB_SCANNER_APP_ADDCORS_POLICYNAME2_PARAMS2 = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_ADDCORS_POLICYNAME2_PARAMS2");
-            if (WEB_SCANNER_APP_ADDCORS_POLICYNAME2_PARAMS2 == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_ADDCORS_POLICYNAME2_PARAMS2);
             #endregion
 
             // CORS Configuration
@@ -66,7 +54,6 @@
                 //    .WithMethods(WEB_SCANNER_APP_ADDCORS_WITHMETHOD_PARAMS1, WEB_SCANNER_APP_ADDCORS_POLICYNAME2_PARAMS2)
                 //    .AllowAnyHeader());
             });
-
         }
     }
 }

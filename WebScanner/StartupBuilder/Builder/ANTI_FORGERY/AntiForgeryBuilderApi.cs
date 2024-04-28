@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using YamlDotNet.Core.Tokens;
 
 namespace WebScanner.StartupBuilder
 {
@@ -23,24 +24,19 @@ namespace WebScanner.StartupBuilder
         public void BuildAntiForgery()
         {
             #region ENV
+
             string WEB_SCANNER_ANTI_FORGERY_BUILDER_ADDANTIFORGERY_FORMFIELDNAME = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_ANTI_FORGERY_BUILDER_ADDANTIFORGERY_FORMFIELDNAME");
-            if (WEB_SCANNER_ANTI_FORGERY_BUILDER_ADDANTIFORGERY_FORMFIELDNAME == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_ANTI_FORGERY_BUILDER_ADDANTIFORGERY_FORMFIELDNAME);
+
             string WEB_SCANNER_ANTI_FORGERY_BUILDER_ADDANTIFORGERY_XCSRFTOKENHEADERNAME = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_ANTI_FORGERY_BUILDER_ADDANTIFORGERY_XCSRFTOKENHEADERNAME");
-            if (WEB_SCANNER_ANTI_FORGERY_BUILDER_ADDANTIFORGERY_XCSRFTOKENHEADERNAME == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_ANTI_FORGERY_BUILDER_ADDANTIFORGERY_XCSRFTOKENHEADERNAME);
+
             string WEB_SCANNER_ANTI_FORGERY_BUILDER_ADDANTIFORGERY_SUPRESSXFRAMEOPTIONHEADER = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_ANTI_FORGERY_BUILDER_ADDANTIFORGERY_SUPRESSXFRAMEOPTIONHEADER");
-            if (WEB_SCANNER_ANTI_FORGERY_BUILDER_ADDANTIFORGERY_SUPRESSXFRAMEOPTIONHEADER == null) { throw new Exception("NullValue"); }
-            else
-            {
-            }
+            ValidityCheck.VerifyNullValue(WEB_SCANNER_ANTI_FORGERY_BUILDER_ADDANTIFORGERY_SUPRESSXFRAMEOPTIONHEADER); 
+           
             bool suppressXFrameOptionsHeader = false;
             if (!string.IsNullOrEmpty(WEB_SCANNER_ANTI_FORGERY_BUILDER_ADDANTIFORGERY_SUPRESSXFRAMEOPTIONHEADER))
             {
@@ -49,6 +45,7 @@ namespace WebScanner.StartupBuilder
                     suppressXFrameOptionsHeader = false;
                 }
             }
+
             #endregion
 
             // Anti-Forgery
@@ -56,7 +53,7 @@ namespace WebScanner.StartupBuilder
 
             builder.Services.AddAntiforgery(options =>
             {
-                // Set Cookie properties using CookieBuilder properties†.
+                // Set Cookie properties using CookieBuilder properties
                 options.FormFieldName = WEB_SCANNER_ANTI_FORGERY_BUILDER_ADDANTIFORGERY_FORMFIELDNAME;
                 options.HeaderName = WEB_SCANNER_ANTI_FORGERY_BUILDER_ADDANTIFORGERY_XCSRFTOKENHEADERNAME;
                 options.SuppressXFrameOptionsHeader = suppressXFrameOptionsHeader;
