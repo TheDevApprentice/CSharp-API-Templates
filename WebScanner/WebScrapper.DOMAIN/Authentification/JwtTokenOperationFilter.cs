@@ -31,6 +31,25 @@ namespace WebScrapper.DOMAIN
             if (authAttributes.Any())
             {
                 operation.Responses
+                .Add(
+                    "200",
+                    new OpenApiResponse
+                    {
+
+                        Description = "Authorized"
+
+                    });
+
+                operation.Responses
+                    .Add(
+                        "400",
+                        new OpenApiResponse
+                        {
+
+                            Description = "test"
+
+                        });
+                operation.Responses
                     .Add(
                         "401",
                         new OpenApiResponse

@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Interfaces;
+using Microsoft.OpenApi.Models;
 using System.Reflection;
 using WebScrapper.DOMAIN;
 
@@ -77,7 +78,33 @@ namespace WebScanner.StartupBuilder
 
             builder.Services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v3", new OpenApiInfo { Title = "My API", Version = "v3" });
+                c.SwaggerDoc(
+                 "v3", 
+                 new OpenApiInfo 
+                 {
+                     Title = "My API",
+                     Version = "v3",
+                     Description = "API Description",
+                     TermsOfService = new Uri("https://example.com/terms"),
+                     Contact = new OpenApiContact
+                     {
+                         Name = "John Doe",
+                         Email = "john.doe@example.com",
+                         Url = new Uri("https://example.com")
+                     },
+                     License = new OpenApiLicense
+                     {
+                         Name = "MIT License",
+                         Url = new Uri("https://opensource.org/licenses/MIT")
+                     },
+                     //Extensions = new Dictionary<string, IOpenApiExtension>
+                     //{
+                     //   {
+                     //        "x-my-extension",
+                     //        new MyCustomExtension()
+                     //   }
+                     //}
+                 });
 
                 c.AddSecurityDefinition("basicAuth", new OpenApiSecurityScheme
                 {

@@ -1,11 +1,59 @@
 namespace WebScrapper.DOMAIN
 {
+    /// <summary>
+    /// Creates a TodoItem.
+    /// </summary>
+    /// <returns></returns>
+    /// 
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /Todo
+    ///     {
+    ///        "id": 1,
+    ///        "name": "Item #1",
+    ///        "isComplete": true
+    ///     }
+    ///
+    /// </remarks>
     public class AdministratorDTO : UserDTO
     {
+        /// <summary>
+        /// Creates a TodoItem.
+        /// </summary>
+        /// <returns></returns>
+        /// 
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /Todo
+        ///     {
+        ///        "id": 1,
+        ///        "name": "Item #1",
+        ///        "isComplete": true
+        ///     }
+        ///
+        /// </remarks>
         public AdministratorDTO()
         {
         }
 
+        /// <summary>
+        /// Creates a TodoItem.
+        /// </summary>
+        /// <returns></returns>
+        /// 
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /Todo
+        ///     {
+        ///        "id": 1,
+        ///        "name": "Item #1",
+        ///        "isComplete": true
+        ///     }
+        ///
+        /// </remarks>
         public AdministratorDTO(
             string token,
             string cookie
@@ -13,6 +61,22 @@ namespace WebScrapper.DOMAIN
         {
         }
 
+        /// <summary>
+        /// Creates a TodoItem.
+        /// </summary>
+        /// <returns></returns>
+        /// 
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /Todo
+        ///     {
+        ///        "id": 1,
+        ///        "name": "Item #1",
+        ///        "isComplete": true
+        ///     }
+        ///
+        /// </remarks>
         public AdministratorDTO(
             string token,
             string cookie,
