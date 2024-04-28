@@ -73,6 +73,7 @@ public class RootController : UserController
     ///     }
     ///
     /// </remarks>
+    /// 
     [HttpPost("signIn")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status201Created)]

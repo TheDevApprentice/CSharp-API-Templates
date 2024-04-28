@@ -1,8 +1,13 @@
-﻿namespace WebScrapper.DOMAIN
+﻿using Newtonsoft.Json;
+using NJsonSchema.NewtonsoftJson.Converters;
+
+namespace WebScrapper.DOMAIN
 {
     /// <summary>
     /// Represents a user model with email and password.
     /// </summary>
+    /// 
+    [JsonConverter(typeof(JsonInheritanceConverter), "type")]
     public class UserModel
     {
         /// <summary>

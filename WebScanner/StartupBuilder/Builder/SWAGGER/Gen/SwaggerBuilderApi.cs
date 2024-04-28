@@ -71,6 +71,7 @@ namespace WebScanner.StartupBuilder
             string WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYREQUIREMENT_ID = Environment
                 .GetEnvironmentVariable("WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYREQUIREMENT_ID");
             ValidityCheck.VerifyNullValue(WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYREQUIREMENT_ID);
+           
             #endregion
 
             // Swagger/OpenAPI Configuration
@@ -78,33 +79,7 @@ namespace WebScanner.StartupBuilder
 
             builder.Services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc(
-                 "v3", 
-                 new OpenApiInfo 
-                 {
-                     Title = "My API",
-                     Version = "v3",
-                     Description = "API Description",
-                     TermsOfService = new Uri("https://example.com/terms"),
-                     Contact = new OpenApiContact
-                     {
-                         Name = "John Doe",
-                         Email = "john.doe@example.com",
-                         Url = new Uri("https://example.com")
-                     },
-                     License = new OpenApiLicense
-                     {
-                         Name = "MIT License",
-                         Url = new Uri("https://opensource.org/licenses/MIT")
-                     },
-                     //Extensions = new Dictionary<string, IOpenApiExtension>
-                     //{
-                     //   {
-                     //        "x-my-extension",
-                     //        new MyCustomExtension()
-                     //   }
-                     //}
-                 });
+                c.DescribeAllParametersInCamelCase();
 
                 c.AddSecurityDefinition("basicAuth", new OpenApiSecurityScheme
                 {
@@ -174,55 +149,7 @@ namespace WebScanner.StartupBuilder
                         new[] { "read", "write" }
                     }
                 });
-            });
 
-            //builder.Services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v2", new OpenApiInfo { Title = "My API", Version = "v2" });
-
-            //    c.AddSecurityDefinition("basicAuth", new OpenApiSecurityScheme
-            //    {
-            //        Type = SecuritySchemeType.Http,
-            //        Scheme = "basic",
-            //        Description = "Basic authentication header"
-            //    });
-
-            //    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-            //    {
-            //        {
-            //            new OpenApiSecurityScheme
-            //            {
-            //                Reference = new OpenApiReference
-            //                {
-            //                    Type = ReferenceType.SecurityScheme,
-            //                    Id = "basicAuth"
-            //                }
-            //            },
-            //            new string[] {}
-            //        }
-            //    });
-            //});
-
-            builder.Services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc(WEB_SCANNER_APP_SWAGGERDOC_VERSION,
-                             new OpenApiInfo
-                             {
-                                 Title = WEB_SCANNER_APP_SWAGGERDOC_TITLE,
-                                 Version = WEB_SCANNER_APP_SWAGGERDOC_VERSION,
-                                 Description = WEB_SCANNER_APP_SWAGGERDOC_DESCRIPTION,
-                                 TermsOfService = new Uri(WEB_SCANNER_APP_SWAGGERDOC_TERMOFSERVICE_URL),
-                                 Contact = new OpenApiContact
-                                 {
-                                     Name = WEB_SCANNER_APP_SWAGGERDOC_CONTACT_NAME,
-                                     Url = new Uri(WEB_SCANNER_APP_SWAGGERDOC_CONTACT_URL)
-                                 },
-                                 License = new OpenApiLicense
-                                 {
-                                     Name = WEB_SCANNER_APP_SWAGGERDOC_LICENCE_NAME,
-                                     Url = new Uri(WEB_SCANNER_APP_SWAGGERDOC_LICENCE_URL)
-                                 }, 
-                             });
                 c.AddSecurityDefinition(
                  WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_NAME,
                  new OpenApiSecurityScheme
@@ -280,6 +207,62 @@ namespace WebScanner.StartupBuilder
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename), true);
                 c.DescribeAllParametersInCamelCase();
+
+                c.SwaggerDoc(WEB_SCANNER_APP_SWAGGERDOC_VERSION,
+                             new OpenApiInfo
+                             {
+                                 Title = WEB_SCANNER_APP_SWAGGERDOC_TITLE,
+                                 Version = WEB_SCANNER_APP_SWAGGERDOC_VERSION,
+                                 Description = WEB_SCANNER_APP_SWAGGERDOC_DESCRIPTION,
+                                 TermsOfService = new Uri(WEB_SCANNER_APP_SWAGGERDOC_TERMOFSERVICE_URL),
+                                 Contact = new OpenApiContact
+                                 {
+                                     Name = WEB_SCANNER_APP_SWAGGERDOC_CONTACT_NAME,
+                                     Url = new Uri(WEB_SCANNER_APP_SWAGGERDOC_CONTACT_URL)
+                                 },
+                                 License = new OpenApiLicense
+                                 {
+                                     Name = WEB_SCANNER_APP_SWAGGERDOC_LICENCE_NAME,
+                                     Url = new Uri(WEB_SCANNER_APP_SWAGGERDOC_LICENCE_URL)
+                                 }, 
+                             });
+
+                c.SwaggerDoc("v2",
+                            new OpenApiInfo
+                            {
+                               Title = "My API",
+                               Version = "v2",
+                               Description = WEB_SCANNER_APP_SWAGGERDOC_DESCRIPTION,
+                               TermsOfService = new Uri(WEB_SCANNER_APP_SWAGGERDOC_TERMOFSERVICE_URL),
+                               Contact = new OpenApiContact
+                                {
+                                    Name = WEB_SCANNER_APP_SWAGGERDOC_CONTACT_NAME,
+                                    Url = new Uri(WEB_SCANNER_APP_SWAGGERDOC_CONTACT_URL)
+                                },
+                                License = new OpenApiLicense
+                                {
+                                    Name = WEB_SCANNER_APP_SWAGGERDOC_LICENCE_NAME,
+                                    Url = new Uri(WEB_SCANNER_APP_SWAGGERDOC_LICENCE_URL)
+                                },
+                            });
+                c.SwaggerDoc("v3",
+                            new OpenApiInfo
+                            {
+                                Title = "My API",
+                                Version = "v3",
+                                Description = WEB_SCANNER_APP_SWAGGERDOC_DESCRIPTION,
+                                TermsOfService = new Uri(WEB_SCANNER_APP_SWAGGERDOC_TERMOFSERVICE_URL),
+                                Contact = new OpenApiContact
+                                {
+                                    Name = WEB_SCANNER_APP_SWAGGERDOC_CONTACT_NAME,
+                                    Url = new Uri(WEB_SCANNER_APP_SWAGGERDOC_CONTACT_URL)
+                                },
+                                License = new OpenApiLicense
+                                {
+                                    Name = WEB_SCANNER_APP_SWAGGERDOC_LICENCE_NAME,
+                                    Url = new Uri(WEB_SCANNER_APP_SWAGGERDOC_LICENCE_URL)
+                                },
+                            });
             });
         }
     }

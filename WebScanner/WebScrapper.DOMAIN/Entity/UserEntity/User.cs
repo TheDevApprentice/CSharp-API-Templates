@@ -1,10 +1,13 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using NJsonSchema.NewtonsoftJson.Converters;
 
 namespace WebScrapper.DOMAIN
 {
     /// <summary>
     /// Represents a user.
     /// </summary>
+    /// 
+    [JsonConverter(typeof(JsonInheritanceConverter), "type")]
     public class User
     {
         /// <summary>

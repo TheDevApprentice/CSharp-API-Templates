@@ -1,4 +1,7 @@
-﻿namespace WebScrapper.DOMAIN
+﻿using Newtonsoft.Json;
+using NJsonSchema.NewtonsoftJson.Converters;
+
+namespace WebScrapper.DOMAIN
 {
     /// <summary>
     /// Creates a TodoItem.
@@ -16,6 +19,8 @@
     ///     }
     ///
     /// </remarks>
+    /// 
+    [JsonConverter(typeof(JsonInheritanceConverter), "type")]
     public class AllRequestDTO
     {
         public string Token { get; set; } = "";

@@ -113,25 +113,31 @@ namespace WebScanner.StartupBuilder
                     c.SwaggerEndpoint(
                         WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_URL,
                         WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_NAME);
-                });
-
-                app.UseSwaggerUI(c =>
-                {
-                    c.RoutePrefix = WEB_SCANNER_USE_SWAGGER_UI_ROUTEPREFIX;
-                    c.DocumentTitle = WEB_SCANNER_USE_SWAGGER_UI_DOCUMENTTITLE;
                     c.SwaggerEndpoint(
                         WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_URL_V2,
                         WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_NAME_V2);
-                });
-
-                app.UseSwaggerUI(c =>
-                {
-                    c.RoutePrefix = WEB_SCANNER_USE_SWAGGER_UI_ROUTEPREFIX;
-                    c.DocumentTitle = WEB_SCANNER_USE_SWAGGER_UI_DOCUMENTTITLE;
                     c.SwaggerEndpoint(
                         WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_URL_V3,
                         WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_NAME_V3);
                 });
+
+                //app.UseSwaggerUI(c =>
+                //{
+                //    c.RoutePrefix = WEB_SCANNER_USE_SWAGGER_UI_ROUTEPREFIX;
+                //    c.DocumentTitle = WEB_SCANNER_USE_SWAGGER_UI_DOCUMENTTITLE;
+                //    c.SwaggerEndpoint(
+                //        WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_URL_V2,
+                //        WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_NAME_V2);
+                //});
+
+                //app.UseSwaggerUI(c =>
+                //{
+                //    c.RoutePrefix = WEB_SCANNER_USE_SWAGGER_UI_ROUTEPREFIX;
+                //    c.DocumentTitle = WEB_SCANNER_USE_SWAGGER_UI_DOCUMENTTITLE;
+                //    c.SwaggerEndpoint(
+                //        WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_URL_V3,
+                //        WEB_SCANNER_USE_SWAGGER_UI_SWAGGERENDPOINT_NAME_V3);
+                //});
                 //WelcomePage
                 //app.UseWelcomePage();
             }

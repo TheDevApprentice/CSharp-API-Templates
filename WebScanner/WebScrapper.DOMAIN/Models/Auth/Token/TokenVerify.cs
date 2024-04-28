@@ -1,11 +1,15 @@
 ﻿using Microsoft.Extensions.Configuration;
 using WebScrapper.DOMAIN.Models.Helper.TokenHelper;
-
+using Newtonsoft.Json;
+using Swashbuckle.AspNetCore.Annotations;
+using NJsonSchema.Converters;
+using NJsonSchema.NewtonsoftJson.Converters;
 namespace WebScrapper.DOMAIN
 {
     /// <summary>
     /// Provides methods to validate the validity of JWT tokens.
     /// </summary>
+    /// 
     public static class TokenVerify
     {
         /// <summary>
