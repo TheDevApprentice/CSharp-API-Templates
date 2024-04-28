@@ -221,7 +221,7 @@ namespace WebScanner.StartupBuilder
                                  {
                                      Name = WEB_SCANNER_APP_SWAGGERDOC_LICENCE_NAME,
                                      Url = new Uri(WEB_SCANNER_APP_SWAGGERDOC_LICENCE_URL)
-                                 }
+                                 }, 
                              });
                 c.AddSecurityDefinition(
                  WEB_SCANNER_APP_SWAGGERDOC_ADDSERCURITYDEFINITION_NAME,
@@ -260,9 +260,13 @@ namespace WebScanner.StartupBuilder
                 //            { "hostpath", new OpenApiServerVariable { Default = "localhost:8787" } }
                 //        }
                 //});
-            
+
                 c.UseOneOfForPolymorphism();
                 c.UseAllOfForInheritance();
+                c.UseInlineDefinitionsForEnums();
+                c.UseOneOfForPolymorphism();
+                c.UseAllOfToExtendReferenceSchemas();
+                c.SupportNonNullableReferenceTypes();
                 c.SelectSubTypesUsing(t =>
                 {
                     if (t.IsInterface)
@@ -271,11 +275,6 @@ namespace WebScanner.StartupBuilder
                     }
                     return Enumerable.Empty<Type>();
                 });
-
-                c.UseInlineDefinitionsForEnums();
-                c.UseOneOfForPolymorphism();
-                c.UseAllOfToExtendReferenceSchemas();
-                c.SupportNonNullableReferenceTypes();
 
                 // Enable XML comments
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";

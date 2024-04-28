@@ -2,14 +2,35 @@
 using System.Security.Cryptography;
 using System.Text;
 
+/// <summary>
+/// 
+/// </summary>
 public class EncryptionHelper
 {
+    /// <summary>
+    /// 
+    /// </summary>
     private const int SaltSize = 32; // Taille du sel en octets (256 bits)
+    
+    /// <summary>
+    /// 
+    /// </summary>
     private const int HashSize = 32; // Taille du hachage en octets (256 bits)
 
+    /// <summary>
+    /// 
+    /// </summary>
     private readonly byte[] _fixedSalt;
+    
+    /// <summary>
+    /// 
+    /// </summary>
     private readonly string _password;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="configuration"></param>
     public EncryptionHelper(IConfiguration configuration)
     {
         #region ENV
