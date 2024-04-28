@@ -8,8 +8,6 @@ namespace WebScanner
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            string value = Environment
-            .GetEnvironmentVariable("env");
 
             Env.Load();
 
