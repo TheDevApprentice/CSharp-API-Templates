@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 using WebScrapper.DOMAIN;
+using static System.Net.WebRequestMethods;
 
 namespace WebScanner.StartupBuilder
 {
@@ -41,9 +43,45 @@ namespace WebScanner.StartupBuilder
             #endregion
 
             // Configuration de l'authentification JWT
+
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {
+                        //Choose the authentification method you desire for your api.
+
+                        /// https://www.keycloak.org
+                        /// https://www.keycloak.org/documentation
+                        #region Keycloak JWT Authentification 
+
+                        // Keycloak JWT Authentification 
+
+                        //options.Authority = "http://localhost:8080/auth/realms/myapp";
+                        //options.MetadataAddress = "http://localhost:8080/auth/realms/myapp/.well-known/openid-configuration";
+                        //options.RequireHttpsMetadata = true;
+
+                        //options.TokenValidationParameters = new TokenValidationParameters
+                        //{
+                        //    NameClaimType = ClaimTypes.Name,
+                        //    RoleClaimType = ClaimTypes.Role,
+                        //    ValidateIssuer = true,
+                        //    ValidateAudience = true,
+                        //    ValidateLifetime = true,
+                        //    ValidateIssuerSigningKey = true,
+                        //    ValidIssuer = jwtIssuer,
+                        //    ValidAudience = jwtAudience,
+                        //    ValidIssuers = new[] { "http://localhost:8080/auth/realms/myapp" },
+                        //    ValidAudiences = new[] { "frontend", "mobile", "swagger", },
+
+                        //    IssuerSigningKey = new SymmetricSecurityKey(
+                        //Encoding.UTF8.GetBytes(jwtKey))
+                        //};
+
+                        #endregion
+
+                        #region C# Custom JWT Authentification 
+
+                        // Configuring JWT authentication with custom role-based claims handling
+
                         options.TokenValidationParameters = new TokenValidationParameters
                         {
                             ValidateIssuer = true,
@@ -54,7 +92,7 @@ namespace WebScanner.StartupBuilder
                             ValidAudience = jwtAudience,
 
                             IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(jwtKey))
+                            Encoding.UTF8.GetBytes(jwtKey))
                         };
 
                         options.Events = new JwtBearerEvents
@@ -62,22 +100,22 @@ namespace WebScanner.StartupBuilder
                             OnTokenValidated = context =>
                             {
                                 var userService = context.HttpContext.RequestServices
-                            .GetRequiredService<IRoleService>();
+                                    .GetRequiredService<IRoleService>();
 
                                 var userId = context.Principal.Identity.Name;
 
                                 var userRoles = userService
-                            .GetUserRoles();
+                                    .GetUserRoles();
 
                                 var claims = new List<Claim>();
 
                                 foreach (var role in userRoles)
                                 {
                                     claims
-                                .Add(new Claim(ClaimTypes.Name, role.Name));
+                                        .Add(new Claim(ClaimTypes.Name, role.Name));
 
                                     claims
-                                .Add(new Claim(ClaimTypes.Role, role.Name));
+                                        .Add(new Claim(ClaimTypes.Role, role.Name));
                                 }
 
                                 var appIdentity = new ClaimsIdentity(claims);
@@ -87,8 +125,10 @@ namespace WebScanner.StartupBuilder
                                 return Task.CompletedTask;
                             }
                         };
-                    });
 
+                        #endregion
+
+                    });
 
             builder.Services.AddAuthorization();
 
