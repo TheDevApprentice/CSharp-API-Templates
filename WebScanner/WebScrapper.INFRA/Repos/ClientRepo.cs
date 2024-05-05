@@ -1,22 +1,21 @@
 ﻿using WebScrapper.DOMAIN;
 
-namespace WebScrapper.INFRA
+namespace WebScrapper.INFRA;
+
+public class ClientRepo : IRoleRepo
 {
-    public class ClientRepo : IRoleRepo
+    private DatabaseContextFactoryDbContext _db_client;
+
+    public ClientRepo(
+        DatabaseContextFactoryDbContext db_client
+    )
     {
-        private DatabaseContextFactoryDbContext _db_client;
+        _db_client = db_client;
+    }
 
-        public ClientRepo(
-            DatabaseContextFactoryDbContext db_client
-        )
-        {
-            _db_client = db_client;
-        }
-
-        List<Role> IRoleRepo.GetUserRoles()
-        {
-            return _db_client.UserRoles
-                    .ToList();
-        }
+    List<Role> IRoleRepo.GetUserRoles()
+    {
+        return _db_client.UserRoles
+                .ToList();
     }
 }

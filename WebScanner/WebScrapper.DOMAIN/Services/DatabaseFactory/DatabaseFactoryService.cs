@@ -18,6 +18,6 @@ public class DatabaseFactoryService : IDatabaseFactoryService
 
     public DbContext GetContextForClient(string clientId)
     {
-        throw new NotImplementedException();
+       return _repoRole.GetContextForClient(clientId);
     }
 }

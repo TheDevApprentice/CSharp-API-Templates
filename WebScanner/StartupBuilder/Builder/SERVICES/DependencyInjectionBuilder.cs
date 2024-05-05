@@ -61,6 +61,9 @@ namespace WebScanner.StartupBuilder
 
             builder.Services
                 .AddSingleton<IDatabaseFactoryRepo, DatabaseContextFactoryRepo>();
+
+            builder.Services
+                .AddSingleton<IDatabaseFactoryRepo, DatabaseContextFactoryRepo>();
             //builder.Services
             //    .AddTransient<IChallengeRepo, ChallengeRepo>();
 

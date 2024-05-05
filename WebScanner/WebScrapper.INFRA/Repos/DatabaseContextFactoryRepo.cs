@@ -13,27 +13,30 @@ namespace WebScrapper.INFRA.Repos
     public class DatabaseContextFactoryRepo : IDatabaseFactoryRepo
     {
         private readonly IConfiguration _configuration;
+        private DatabaseContextFactoryDbContext _db_client;
 
-        public DatabaseContextFactoryRepo(IConfiguration configuration)
+        public DatabaseContextFactoryRepo(IConfiguration configuration, DatabaseContextFactoryDbContext db_client)
         {
             _configuration = configuration;
+            _db_client = db_client;
         }
 
         public DbContext GetContextForClient(string clientId)
         {
-            // Récupérer la chaîne de connexion en fonction de l'identifiant du client
             string connectionString = GetConnectionStringForClient(clientId);
 
-            // Créer et retourner le contexte de base de données en fonction de la chaîne de connexion
             return new DatabaseContextFactoryDbContext(connectionString);
         }
 
-        private string GetConnectionStringForClient(string clientId)
+        protected string GetConnectionStringForClient(string clientId)
         {
-            // Logique pour récupérer la chaîne de connexion à partir de la configuration en fonction de l'ID client
-            // Vous pouvez stocker les informations de connexion dans appsettings.json ou dans une autre source de configuration
-            // Pour cet exemple, supposons que vous avez une configuration de type "ConnectionStrings" dans appsettings.json
-            return _configuration.GetConnectionString(clientId);
+            string connectionString = $"Server={"DB_SERVER_PROD"},{"DB_PORT_PORT"};" +
+                                      $"Database={"DB_NAME_PROD"};" +
+                                      $"User id={"DB_USER_PROD"};" +
+                                      $"Pwd={"DB_PASSWORD_PROD"};" +
+                                      $"TrustServerCertificate={"DB_TRUST_CERTIFICATE_SERVER_PROD"}"; 
+
+            return connectionString;
         }
     }
 }
