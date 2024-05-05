@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using WebScanner.DOMAIN;
 
 namespace WebScanner.StartupBuilder
 {

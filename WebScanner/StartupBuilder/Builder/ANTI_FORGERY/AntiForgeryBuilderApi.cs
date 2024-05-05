@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebScanner.DOMAIN;
 using YamlDotNet.Core.Tokens;
 
 namespace WebScanner.StartupBuilder

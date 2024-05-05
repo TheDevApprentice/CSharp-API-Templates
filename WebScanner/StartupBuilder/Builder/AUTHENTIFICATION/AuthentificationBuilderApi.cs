@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
+using WebScanner.DOMAIN;
 using WebScrapper.DOMAIN;
 using static System.Net.WebRequestMethods;
 

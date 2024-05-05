@@ -1,4 +1,6 @@
-﻿namespace WebScanner.StartupBuilder
+﻿using WebScanner.DOMAIN;
+
+namespace WebScanner.StartupBuilder
 {
     /// <summary>
     /// 

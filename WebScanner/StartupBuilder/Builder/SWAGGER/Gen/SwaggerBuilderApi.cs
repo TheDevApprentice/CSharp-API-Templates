@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Security.AccessControl;
 using System.Web.Services.Description;
+using WebScanner.DOMAIN;
 using WebScrapper.DOMAIN;
 
 namespace WebScanner.StartupBuilder

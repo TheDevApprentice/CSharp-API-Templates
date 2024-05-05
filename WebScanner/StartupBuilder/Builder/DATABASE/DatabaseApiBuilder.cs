@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WebScanner.DOMAIN;
 using WebScrapper.INFRA;
 
 namespace WebScanner.StartupBuilder
@@ -117,6 +118,12 @@ namespace WebScanner.StartupBuilder
                     .AddDbContext<ApiDbContext>(options =>
                         options
                         .UseInMemoryDatabase(DB_NAME_INMEMORY));
+
+                builder.Services
+                .AddDbContext<DatabaseContextFactoryDbContext>(options =>
+                    options
+                    .UseSqlServer()
+                    );
             }
         }
     }

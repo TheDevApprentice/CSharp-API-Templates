@@ -1,5 +1,7 @@
 ﻿using WebScrapper.DOMAIN;
+using WebScrapper.DOMAIN.Interfaces.DatabaseFactory;
 using WebScrapper.INFRA;
+using WebScrapper.INFRA.Repos;
 
 namespace WebScanner.StartupBuilder
 {
@@ -39,6 +41,10 @@ namespace WebScanner.StartupBuilder
             builder.Services
                 .AddTransient<IUserService, UserService>();
 
+
+            builder.Services
+                .AddSingleton<IDatabaseFactoryService, DatabaseFactoryService>();
+
             //builder.Services
             //    .AddTransient<IChallengeService, ChallengeService>();
 
@@ -53,6 +59,8 @@ namespace WebScanner.StartupBuilder
             builder.Services
                 .AddScoped<IUserRepo, UserRepo>();
 
+            builder.Services
+                .AddSingleton<IDatabaseFactoryRepo, DatabaseContextFactoryRepo>();
             //builder.Services
             //    .AddTransient<IChallengeRepo, ChallengeRepo>();
 
